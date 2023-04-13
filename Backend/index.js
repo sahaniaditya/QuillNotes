@@ -1,15 +1,20 @@
 const connectToMongo = require("./database.js")
 connectToMongo();
+var cors = require('cors')
 const express = require('express');
 const app = express()
-const port = 3000
+
+
+
+app.use(cors())
+const port = 5000
 //middleware for sending the json text
 app.use(express.json())
 /*app.get('/', (req, res) => {
   res.send('Hello World!')
 })*/
 app.use("/api/auth",require('./routes/auth'));
-//app.use("/api/notes",require('./routes/notes'));
+app.use("/api/notes",require('./routes/notes'));
 
 
 app.listen(port, () => {
